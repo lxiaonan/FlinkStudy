@@ -68,14 +68,20 @@ public class SocketStreamWordCount {
         Configuration configuration = new Configuration();
         configuration.set(RestOptions.BIND_PORT,"8082");
         StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(configuration);
+//        env.setParallelism(1);// 设置整体的并行度
+        // 优先级：单独算子的并行度指定> 全局的并行度 > 提交时指定 > 配置文件
         DataStreamSource<String> localhost = env.socketTextStream("localhost", 9999);
         localhost.flatMap((String v, Collector<Tuple2<String, Integer>> out ) -> {
             String[] strings = v.split(" ");
             for (String string : strings) {
                 out.collect(Tuple2.of(string, 1));
             }
-        }).returns(Types.TUPLE(Types.STRING, Types.INT))
-                .keyBy(t->t.f0).sum(1).print();
+        })
+//                .setParallelism(2)// 设置flatMap的并行度
+                .returns(Types.TUPLE(Types.STRING, Types.INT))
+                .keyBy(t->t.f0).sum(1)
+                .disableChaining()// 禁用算子链，keyBy不会与前后算子形成连接
+                .print();
 
         env.execute();
     }
