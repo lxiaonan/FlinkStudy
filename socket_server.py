@@ -17,12 +17,12 @@ def handle_client(client_socket, addr):
     try:
         # 发送一些测试数据
         test_data = [
-            "hello world flink",
-            "apache flink streaming",
-            "flink word count example",
-            "real time processing",
-            "big data analytics",
-            "stream processing engine"
+            "s1,ppx",
+#             "apache flink streaming",
+#             "flink word count example",
+#             "real time processing",
+#             "big data analytics",
+#             "stream processing engine"
         ]
         
         for data in test_data:
