@@ -24,12 +24,13 @@ def handle_client(client_socket, addr):
 #             "big data analytics",
 #             "stream processing engine"
         ]
-        
-        for data in test_data:
-            message = data + "\n"
-            client_socket.send(message.encode('utf-8'))
-            print(f"发送: {data}")
-            time.sleep(2)  # 每2秒发送一条数据
+
+        # 关闭前置发送
+#         for data in test_data:
+#             message = data + "\n"
+#             client_socket.send(message.encode('utf-8'))
+#             print(f"发送: {data}")
+#             time.sleep(2)  # 每2秒发送一条数据
             
         # 保持连接，等待手动输入
         print("\n现在可以手动输入数据，按Ctrl+C退出:")
