@@ -36,8 +36,8 @@ public class WindowAggregateAndProcessDemo {
         });
         KeyedStream<WaterSensor, String> ks = map.keyBy(WaterSensor::getId);
         WindowedStream<WaterSensor, String, TimeWindow> window = ks.window(TumblingProcessingTimeWindows.of(Time.seconds(10)));
-//        window.aggregate(new MyAdd(), new MyProcess()).print();
-        window.reduce(new MyReduce(), new MyProcessR());
+        window.aggregate(new MyAdd(), new MyProcess()).print();
+//        window.reduce(new MyReduce(), new MyProcessR());
         env.execute();
     }
     public static class MyAdd implements AggregateFunction<WaterSensor, Integer, String> {
