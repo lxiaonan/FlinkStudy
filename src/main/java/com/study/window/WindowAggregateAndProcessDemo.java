@@ -51,7 +51,7 @@ public class WindowAggregateAndProcessDemo {
         public Integer add(WaterSensor value, Integer accumulator) {
             // 具体操作
             System.out.println(value);
-            return Integer.parseInt(value.getAge()) + accumulator;
+            return Integer.parseInt(value.getTs()) + accumulator;
         }
 
         @Override
@@ -69,7 +69,7 @@ public class WindowAggregateAndProcessDemo {
     public static class MyReduce implements ReduceFunction<WaterSensor> {
         @Override
         public WaterSensor reduce(WaterSensor value1, WaterSensor value2) throws Exception {
-            return new WaterSensor(value1.getId(), value1.getAge() + value2.getAge());
+            return new WaterSensor(value1.getId(), value1.getTs() + value2.getTs());
         }
     }
     public static class MyProcessR extends ProcessWindowFunction<WaterSensor, String, String, TimeWindow> {

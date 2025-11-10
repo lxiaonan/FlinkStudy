@@ -18,7 +18,7 @@ public class KeyByDemo {
         DataStreamSink<WaterSensor> print = source.keyBy(new KeySelector<WaterSensor, String>() {
             @Override
             public String getKey(WaterSensor waterSensor) throws Exception {
-                return waterSensor.getAge();
+                return waterSensor.getTs();
             }
         }).print();
         env.execute();

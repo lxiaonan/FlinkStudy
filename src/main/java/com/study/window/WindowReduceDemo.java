@@ -2,12 +2,10 @@ package com.study.window;
 
 import com.study.api1.transformation.WaterSensor;
 import org.apache.flink.api.common.functions.ReduceFunction;
-import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.datastream.WindowedStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
@@ -27,7 +25,7 @@ public class WindowReduceDemo {
             @Override
             public WaterSensor reduce(WaterSensor value1, WaterSensor value2) throws Exception {
                 System.out.println("v1:" + value1 + " v2:" + value2);
-                return new WaterSensor(value1.getId(), value1.getAge() + value2.getAge());
+                return new WaterSensor(value1.getId(), value1.getTs() + value2.getTs());
             }
         });
         reduce.print();

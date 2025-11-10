@@ -34,7 +34,7 @@ public class MysqlSinkDemo {
                         // 将WaterSensor的第一个字段设置为第一个参数
                         preparedStatement.setString(1, o.getId());
                         // 将WaterSensor的第二个字段设置为第二个参数
-                        preparedStatement.setString(2, o.getAge());
+                        preparedStatement.setString(2, o.getTs());
                     }
                 },
                 // 配置JDBC执行选项

@@ -27,7 +27,7 @@ public class TimeWindowsDemo {
 //                        .window(SlidingProcessingTimeWindows.of(Time.seconds(10),Time.seconds(5)))// 滑动窗口10秒，5秒滑动一次
 //                        .window(ProcessingTimeSessionWindows.withGap(Time.seconds(5))) // 会话窗口,5秒内没有数据，则认为会话结束
                         .window(ProcessingTimeSessionWindows.withDynamicGap(w->{
-                            return Integer.parseInt(w.getAge()) * 1000L;// 时间单位是毫秒
+                            return Integer.parseInt(w.getTs()) * 1000L;// 时间单位是毫秒
                         }))// 会话窗口，动态设置会话间隔
                 ;
         SingleOutputStreamOperator<String> process = window.process(new ProcessWindowFunction<WaterSensor, String, String, TimeWindow>() {

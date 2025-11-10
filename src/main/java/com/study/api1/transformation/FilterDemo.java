@@ -1,6 +1,5 @@
 package com.study.api1.transformation;
 
-import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -24,7 +23,7 @@ public class FilterDemo {
                             collector.collect(waterSensor.getId());
                         } else if (waterSensor.getId().equals("s2")) {
                             collector.collect(waterSensor.getId());
-                            collector.collect(waterSensor.getAge());
+                            collector.collect(waterSensor.getTs());
                         }
                     }
                 })

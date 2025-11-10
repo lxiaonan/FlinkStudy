@@ -45,7 +45,7 @@ public class WindowAggregateDemo {
             public Integer add(WaterSensor value, Integer accumulator) {
                 // 具体操作
                 System.out.println(value);
-                return Integer.parseInt(value.getAge()) + accumulator;
+                return Integer.parseInt(value.getTs()) + accumulator;
             }
 
             @Override

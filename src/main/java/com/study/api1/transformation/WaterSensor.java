@@ -2,7 +2,7 @@ package com.study.api1.transformation;
 
 public class WaterSensor {
     private String id;
-    private String age;
+    private String ts;
 
     public String getId() {
         return id;
@@ -12,24 +12,24 @@ public class WaterSensor {
         this.id = id;
     }
 
-    public String getAge() {
-        return age;
+    public String getTs() {
+        return ts;
     }
 
     @Override
     public String toString() {
         return "WaterSensor{" +
                 "id='" + id + '\'' +
-                ", age=" + age +
+                ", ts=" + ts +
                 '}';
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public void setTs(String ts) {
+        this.ts = ts;
     }
-    public WaterSensor(String id, String age) {
+    public WaterSensor(String id, String ts) {
         this.id = id;
-        this.age = age;
+        this.ts = ts;
     }
     public WaterSensor() {
     }
