@@ -14,6 +14,7 @@ import threading
 import time
 import sys
 import signal
+import argparse
 
 # 维护客户端集合
 clients = set()
@@ -143,8 +144,13 @@ def _sigint_handler(sig, frame):
 signal.signal(signal.SIGINT, _sigint_handler)
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Socket服务器（模拟 nc -lk），支持命令行传参")
+    parser.add_argument("port", nargs="?", type=int, default=9999, help="监听端口，默认 9999")
+    parser.add_argument("host", nargs="?", default="localhost", help="绑定主机地址，默认 localhost")
+    args = parser.parse_args()
+
     try:
-        start_socket_server()
+        start_socket_server(host=args.host, port=args.port)
     except SystemExit:
         pass
     except KeyboardInterrupt:
